@@ -20,7 +20,7 @@ namespace OnlineStudyApplication.Models
         [Display(Name = "Chapter Description")]
         public string ChapterDescription { get; set; }
 
-        [Display(Name = "Upload file in .pdf format")]
+        [Display(Name = "Image")]
         public string FileUpload { get; set; }
 
         // fk fields
