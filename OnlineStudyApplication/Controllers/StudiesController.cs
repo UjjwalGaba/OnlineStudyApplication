@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +24,7 @@ namespace OnlineStudyApplication.Controllers
         // GET: Studies
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Studies.Include(s => s.Course);
+            var applicationDbContext = _context.Studies.Include(s => s.Course).OrderBy(s => s.ChapterName);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -48,7 +50,7 @@ namespace OnlineStudyApplication.Controllers
         // GET: Studies/Create
         public IActionResult Create()
         {
-            ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "CourseName");
+            ViewData["CourseId"] = new SelectList(_context.Courses.OrderBy(c => c.CourseName), "Id", "CourseName");
             return View();
         }
 
@@ -57,10 +59,28 @@ namespace OnlineStudyApplication.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ChapterName,ChapterDescription,FileUpload,CourseId")] Study study)
+        public async Task<IActionResult> Create([Bind("Id,ChapterName,ChapterDescription,CourseId")] Study study, IFormFile FileUpload)
         {
             if (ModelState.IsValid)
             {
+
+                // upload photo and attach to the new product if any
+                if (FileUpload != null)
+                {
+                    var filePath = Path.GetTempFileName(); // get image from cache
+                    var fileName = Guid.NewGuid() + "-" + FileUpload.FileName; // add unique id as prefix to file name
+                    var uploadPath = System.IO.Directory.GetCurrentDirectory() + "\\wwwroot\\img\\file\\" + fileName;
+
+                    using (var stream = new FileStream(uploadPath, FileMode.Create))
+                    {
+                        await FileUpload.CopyToAsync(stream);
+                    }
+
+                    // add unique Image file name to the new product object before saving
+                    study.FileUpload = fileName;
+                }
+
+
                 _context.Add(study);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -156,5 +176,12 @@ namespace OnlineStudyApplication.Controllers
         {
             return _context.Studies.Any(e => e.Id == id);
         }
+
+
+        
+
+
     }
+
+    
 }

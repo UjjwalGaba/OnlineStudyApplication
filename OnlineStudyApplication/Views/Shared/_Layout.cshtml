@@ -9,20 +9,21 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style=""background-color: 818B7C">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">OnlineStudyApplication</a>
+                <img src="~/img/logo.png" width="70px" height="70px" />
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-controller="Courses" asp-action="Index">Courses</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-controller="Studies" asp-action="Index">Study Material</a>
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
@@ -38,12 +39,16 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - OnlineStudyApplication - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <span>Ujjwal Gaba (#200457461) Server-Side Scripting ASP.NET COMP2084</span>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    
+    <!-- Tables sorting script from https://kryogenix.org/code/browser/sorttable/-->
+    <script src="~/js/sorttable.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

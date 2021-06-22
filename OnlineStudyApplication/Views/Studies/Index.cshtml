@@ -10,20 +10,20 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table sortable">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ChapterName)
+                <a href="#">@Html.DisplayNameFor(model => model.ChapterName)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ChapterDescription)
+                <a href="#">@Html.DisplayNameFor(model => model.ChapterDescription)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FileUpload)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Course)
+                <a href="#">@Html.DisplayNameFor(model => model.Course)</a>
             </th>
             <th></th>
         </tr>
@@ -38,7 +38,13 @@
                 @Html.DisplayFor(modelItem => item.ChapterDescription)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FileUpload)
+                @if (item.FileUpload != null)
+                {
+                    @if (item.FileUpload != null)
+                    {
+                        <img src="~/img/file/@item.FileUpload" alt="Image not found" class="img-thumbnail" />
+                    }
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Course.CourseName)

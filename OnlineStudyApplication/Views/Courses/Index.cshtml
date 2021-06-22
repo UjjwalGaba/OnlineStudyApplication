@@ -1,29 +1,29 @@
 ﻿@model IEnumerable<OnlineStudyApplication.Models.Course>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Courses";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Courses</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table sortable">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CourseName)
+                <a href="#">@Html.DisplayNameFor(model => model.CourseName)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.InstructorName)
+                <a href="#">@Html.DisplayNameFor(model => model.InstructorName)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.InstructorEmail)
+                <a href="#"> @Html.DisplayNameFor(model => model.InstructorEmail)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CourseDuration)
+                <a href="#">@Html.DisplayNameFor(model => model.CourseDuration)</a>
             </th>
             <th></th>
         </tr>
