@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+// add reference to authorization package
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +12,8 @@ using OnlineStudyApplication.Models;
 
 namespace OnlineStudyApplication.Controllers
 {
+    // protect this controller
+    [Authorize(Roles = "Administrator")]
     public class CoursesController : Controller
     {
         private readonly ApplicationDbContext _context;

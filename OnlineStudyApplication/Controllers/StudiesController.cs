@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+// add reference to package to use Authorization
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,6 +14,8 @@ using OnlineStudyApplication.Models;
 
 namespace OnlineStudyApplication.Controllers
 {
+    // protect this controller
+    [Authorize(Roles = "Administrator")] 
     public class StudiesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -29,6 +33,8 @@ namespace OnlineStudyApplication.Controllers
         }
 
         // GET: Studies/Details/5
+        // This attribute will allow anybody to access this section
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
