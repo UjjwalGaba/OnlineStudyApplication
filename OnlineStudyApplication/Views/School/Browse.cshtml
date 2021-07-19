@@ -1,0 +1,42 @@
+﻿@*Verify we are using the right model
+    List implements IEnumberable interface
+    *@
+@model IEnumerable<OnlineStudyApplication.Models.Study>
+
+@{
+    ViewData["Title"] = "Browse";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.course != null)
+            {
+                <h1>@ViewBag.course</h1>
+}
+else
+            {
+                <h1>Browse</h1>
+            }
+
+@* To keep my design consistent  *@
+
+<section class="row card-group">
+    @foreach (var study in Model)
+    {
+        <div class="col-sm-6 mb-3">
+            <div class="card mb-6 text-center h-100">
+                <div class="card-body">
+                    <a asp:controller="Studies" 
+                       asp-action="Details" 
+                       asp-route-id="@study.Id">@study.ChapterName</a>
+                
+                    <img src="~/img/file/@study.FileUpload"
+                         alt="Logo for @study.ChapterName"
+                         class="img-thumbnail" />
+                </div>
+            </div>
+        </div>
+    }
+
+</section>
+
+

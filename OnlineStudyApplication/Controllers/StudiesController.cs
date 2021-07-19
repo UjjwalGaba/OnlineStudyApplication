@@ -34,6 +34,7 @@ namespace OnlineStudyApplication.Controllers
 
         // GET: Studies/Details/5
         // This attribute will allow anybody to access this section
+
         [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
