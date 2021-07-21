@@ -16,6 +16,7 @@ namespace OnlineStudyApplication.Controllers
 {
     // protect this controller
     [Authorize(Roles = "Administrator")] 
+    
     public class StudiesController : Controller
     {
         private readonly ApplicationDbContext _context;
