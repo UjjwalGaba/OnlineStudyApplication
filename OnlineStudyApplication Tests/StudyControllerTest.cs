@@ -114,6 +114,10 @@ namespace OnlineStudyApplication_Tests
             Assert.AreEqual("Create", viewResult.ViewName);
             
         }
+        public void TestCreate3()
+        {
+
+        }
 
         /*
             a.	Create (GET)
