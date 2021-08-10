@@ -30,7 +30,7 @@ namespace OnlineStudyApplication.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Studies.Include(s => s.Course).OrderBy(s => s.ChapterName);
-            return View(await applicationDbContext.ToListAsync());
+            return View("Index", await applicationDbContext.ToListAsync());
         }
 
         // GET: Studies/Details/5
@@ -52,14 +52,14 @@ namespace OnlineStudyApplication.Controllers
                 return NotFound();
             }
 
-            return View(study);
+            return View("Details", study);
         }
 
         // GET: Studies/Create
         public IActionResult Create()
         {
             ViewData["CourseId"] = new SelectList(_context.Courses.OrderBy(c => c.CourseName), "Id", "CourseName");
-            return View();
+            return View("Create");
         }
 
         // POST: Studies/Create
@@ -94,8 +94,10 @@ namespace OnlineStudyApplication.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CourseId"] = new SelectList(_context.Courses, "Id", "CourseName", study.CourseId);
-            return View(study);
+            return View("Create",study);
         }
+
+       
 
         // GET: Studies/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -166,7 +168,7 @@ namespace OnlineStudyApplication.Controllers
                 return NotFound();
             }
 
-            return View(study);
+            return View("Delete", study);
         }
 
         // POST: Studies/Delete/5

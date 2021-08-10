@@ -18,6 +18,7 @@ namespace OnlineStudyApplication.Models
 
         [Required]
         [Display(Name = "Chapter Description")]
+        [StringLength(50, MinimumLength = 45)]
         public string ChapterDescription { get; set; }
 
         [Display(Name = "Image")]
