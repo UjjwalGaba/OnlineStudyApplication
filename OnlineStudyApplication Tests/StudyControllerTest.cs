@@ -57,7 +57,89 @@ namespace OnlineStudyApplication_Tests
             controller = new StudiesController(_context);
 
         }
-        /*
+
+        // Test for delete
+        [TestMethod]
+        public void DeleteReturnsResult()
+        {
+            //arrange
+            //act
+            var result = controller.Delete(101);
+            var viewResult = (ViewResult)result.Result;
+            var model = (List<Study>)viewResult.Model;
+            //assert
+            CollectionAssert.AllItemsAreNotNull(model);
+
+        }
+
+        // Test for delete
+        [TestMethod]
+        public void DeleteReturns()
+        {
+            //arrange
+            //act
+            var result = controller.Delete(101);
+            var viewResult = (ViewResult)result.Result;
+            var model = (List<Study>)viewResult.Model;
+            //assert
+            CollectionAssert.AreEqual(studies, model);
+        }
+
+        // Test for delete
+        [TestMethod]
+        public void TestDeleteId()
+        {
+            var result = controller.Delete(101);
+            var viewResult = (ViewResult)result.Result;
+
+            Assert.AreEqual("Delete", viewResult.ViewName);
+        }
+
+
+        // Test for Details View
+        [TestMethod]
+        public void TestDetialView()
+        {
+
+            // Act
+            var result = controller.Details(101);
+            var viewResult = (ViewResult)result.Result;
+
+            // Assert
+            Assert.AreEqual("Details", viewResult.ViewName);
+        }
+
+
+        // Test for Create
+        [TestMethod]
+        public void TestCreate1()
+        {
+            var result = controller.Create();
+            var viewResult = (ViewResult)result;
+
+            Assert.AreEqual("Create", viewResult.ViewName);
+        }
+
+
+        // Test for Create
+        [TestMethod]
+        public void TestCreate2()
+        {
+            controller.ModelState.AddModelError("ChapterDiscription", "StringLength");
+
+            var result = controller.Create();
+            var viewResult = (ViewResult)result;
+
+            Assert.AreEqual("Create", viewResult.ViewName);
+
+        }
+
+        
+
+        
+
+
+        // Test for index view
         [TestMethod]
         public void IndexViewLoads()
         {
@@ -71,53 +153,11 @@ namespace OnlineStudyApplication_Tests
             Assert.AreEqual("Index", viewResult.ViewName);
 
 
-        }*/
-        /*
-        [TestMethod]
-        public void TestDetialView()
-        {
-
-            // Act
-            var result = controller.Details(101);
-            var viewResult = (ViewResult)result.Result;
-
-            // Assert
-            Assert.AreEqual("Details", viewResult.ViewName);
-        }
-        */
-        [TestMethod]
-        public void TestDeleteId()
-        {
-            var result = controller.Delete(101);
-            var viewResult = (ViewResult)result.Result;
-
-            Assert.AreEqual("Delete", viewResult.ViewName);
         }
 
-        [TestMethod]
-        public void TestCreate1()
-        {
-            var result = controller.Create();
-            var viewResult = (ViewResult)result;
+        
 
-            Assert.AreEqual("Create", viewResult.ViewName);
-        }
 
-        [TestMethod]
-        public void TestCreate2()
-        {
-            controller.ModelState.AddModelError("ChapterDiscription", "StringLength");
-
-            var result = controller.Create();
-            var viewResult = (ViewResult)result;
-
-            Assert.AreEqual("Create", viewResult.ViewName);
-            
-        }
-        public void TestCreate3()
-        {
-
-        }
 
         /*
             a.	Create (GET)

@@ -62,6 +62,8 @@ namespace OnlineStudyApplication.Controllers
             return View("Create");
         }
 
+       
+
         // POST: Studies/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -168,7 +170,7 @@ namespace OnlineStudyApplication.Controllers
                 return NotFound();
             }
 
-            return View("Delete", study);
+            return View("Delete", await _context.Studies.ToListAsync());
         }
 
         // POST: Studies/Delete/5
